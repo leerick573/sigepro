@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="detail_content">
-            <div class="detail_img small_box"><img :src="image" width="75%"></div>
+            <div class="detail_img small_box"><glass :img="image"></glass></div>
             <div class="detail_desc">
                 <div class="big_box"></div>
                 <div class="desc_title">
