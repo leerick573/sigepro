@@ -95,11 +95,15 @@ export default {
         }),
         this.axios.get('/listall',{params:{value:this.value}}).then(res=>{
             let data = res.data.results;
-            data.forEach(item=>{
-                item.image = require('../../../server/public' + item.image);
-                this.lists.push(item);
-                this.cname = item.category_name;
+            if(data == ""){
+                return this.message.error("没有查询到该类商品");
+            }else{
+                data.forEach(item=>{
+                    item.image = require('../../../server/public' + item.image);
+                    this.lists.push(item);
+                    this.cname = item.category_name;
             })
+            }
         })
     }
 }
