@@ -95,10 +95,10 @@ export default {
     },
     methods:{
         login(){
-            var _this = this
             this.axios.get('/login',{params:{"name":this.name,"password":this.password}}).then(res=>{
                 if(res.data.code === 1){
                     this.$router.push('/index')
+                    localStorage.name = this.name
                     return this.message.success('登录成功')
                 }else{
                     return this.message.error('登录失败：用户名或密码错误')

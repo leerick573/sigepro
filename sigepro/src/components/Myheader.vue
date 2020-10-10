@@ -17,12 +17,13 @@
             <div class="nav_right">
                 <ul>
                     <li><a href="#">访问手机版</a></li>
-                    <li>
+                    <li v-if="name == null">
                         <ul>
                             <li><router-link to="/login">登录</router-link></li>
                             <li><router-link to="/register">注册</router-link></li>
                         </ul>
                     </li>
+                    <li v-else class="name">{{name}}<button @click="exit">注销</button></li>
                     <li class="cart"><a href="#">购物车(0)</a></li>
                 </ul>
             </div>
@@ -32,7 +33,28 @@
     </div>
 </template>
 
+<script>
+export default {
+    data(){
+        return {
+            name:null
+        }
+    },
+    methods:{
+        exit(){
+            localStorage.clear();
+            window.location.reload()
+        }
+    },
+    mounted(){
+        this.name = localStorage.name
+    }
+}
+</script>
+
 <style scoped>
+    .nav_right button{margin-left: 10px;font-size:12px;}
+    .nav_right .name{font-size: 12px;color: rgba(255,255,255,0.7)}
     .header_nav{background-color: #333;}
     .nav_content:after{
         content: '';
